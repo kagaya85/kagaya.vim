@@ -10,6 +10,13 @@ filetype plugin indent on
 " 退出insert自动保存
 au InsertLeave *.go,*.sh,*.md write
 
+" 插入模式显示绝对行号
+augroup relative_numbser
+    autocmd!
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+augroup END
+
 "
 " 快捷键映射
 "
@@ -27,6 +34,9 @@ nmap <Leader>v "+p
 highlight Pmenu ctermfg=250 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=7 guifg=darkgrey guibg=black
 
+"
+" property
+"
 set autoindent
 set cursorline
 set completeopt=menu,menuone
@@ -41,6 +51,8 @@ set showmatch
 set shiftwidth=4
 set shortmess+=c
 set tabstop=4
+set ttyfast "should make scrolling faster
+set lazyredraw "same as above
 set updatetime=300
 set wildmenu
 set wrap
@@ -53,7 +65,7 @@ call plug#begin('~/.vim/plugged')
 " vim 启动页
 Plug 'mhinz/vim-startify'
 
-" coc
+" coc 自动补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " golang
@@ -61,11 +73,11 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dgryski/vim-godef'
 
 " Markdown
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
-" 自动补全
+" ycm 自动补全
 "Plug 'Valloric/YouCompleteMe'
 
 " 静态检查
@@ -113,7 +125,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'RRethy/vim-illuminate'
 
 " 缩进线
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
