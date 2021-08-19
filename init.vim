@@ -1,5 +1,5 @@
 "
-" Kagaya vim editor config
+" Kagaya's vim editor config
 "
 
 syntax enable
@@ -20,13 +20,24 @@ augroup END
 "
 " 快捷键映射
 "
-nmap <F9> :TagbarToggle<CR>
+
+" Leader键
+let mapleader=','
+
+" 映射移动窗口快捷键
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+" 打开和关闭Tagbar
+nnoremap <Leader>t :TagbarToggle<CR>
 " 打开和关闭NERDTree快捷键
-map <F10> :NERDTreeToggle<CR>
+nnoremap <Leader>v :NERDTreeToggle<CR>
+nnoremap <Leader>f :NERDTreeFind<CR>
 " 系统剪切板快捷键
-vmap <Leader>c "+y
-nmap <Leader>c "+y
-nmap <Leader>v "+p
+" vnoremap <Leader>c "+y
+" nnoremap <Leader>c "+y
+" nnoremap <Leader>v "+p
 
 "
 " color
@@ -56,6 +67,7 @@ set lazyredraw "same as above
 set updatetime=300
 set wildmenu
 set wrap
+set encoding=UTF-8
 
 "
 " vim plug
@@ -119,7 +131,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-peekaboo'
 
 " 多光标
-Plug 'mg979/vim-visual-multi'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " 高亮相同单词
 Plug 'RRethy/vim-illuminate'
@@ -127,7 +139,19 @@ Plug 'RRethy/vim-illuminate'
 " 缩进线
 Plug 'Yggdroot/indentLine'
 
+" 自动生成go test
+Plug 'buoto/gotests-vim'
+
+" 文件搜索
+Plug 'ctrlpvim/ctrlp.vim'
+
+" icon
+Plug 'ryanoasis/vim-devicons'
+
+" git
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
 
 
 "
@@ -169,7 +193,9 @@ let NERDTreeShowHidden = 1
 " 设置宽度
 " let NERDTreeWinSize=31
 " 忽略一下文件的显示
-let NERDTreeIgnore = []
+let NERDTreeIgnore = [
+		\ '\.DS_Store$',
+		\ ]
 " 打开 vim 文件及显示书签列表
 let NERDTreeShowBookmarks = 2
 " 在终端启动vim时，共享NERDTree
@@ -179,7 +205,6 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 "
 " tagbar
 "
-
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -303,3 +328,8 @@ let g:VM_maps['Add Cursor Up'] = '<C-x>'
 " indentLine
 "
 let g:indentLine_char = '┆'
+
+" CtrlP 文件搜索
+"
+"
+let g:ctrlp_map = '<c-p>'
