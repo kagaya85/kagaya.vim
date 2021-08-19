@@ -8,7 +8,7 @@ syntax on
 filetype plugin indent on
 
 " 退出insert自动保存
-au InsertLeave *.go,*.sh,*.md write
+" au InsertLeave *.go,*.sh,*.md write
 
 " 插入模式显示绝对行号
 augroup relative_numbser
@@ -24,20 +24,34 @@ augroup END
 " Leader键
 let mapleader=','
 
+" 保存快捷键
+inoremap <Leader>w <Esc>:w<CR>
+noremap <Leader>w :w<CR>
+
 " 映射移动窗口快捷键
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
 " 打开和关闭Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
+
 " 打开和关闭NERDTree快捷键
 nnoremap <Leader>v :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFind<CR>
+
 " 系统剪切板快捷键
 " vnoremap <Leader>c "+y
 " nnoremap <Leader>c "+y
 " nnoremap <Leader>v "+p
+
+" easymotion
+map ss <plug>(easymotion-s2)
+map tt <plug>(easymotion-t2)
+
+" 取消高亮搜索
+nnoremap <Leader>h :nohlsearch<CR>
 
 "
 " color
@@ -74,6 +88,9 @@ set encoding=UTF-8
 "
 call plug#begin('~/.vim/plugged')
 
+" vim theme
+Plug 'NLKNguyen/papercolor-theme'
+
 " vim 启动页
 Plug 'mhinz/vim-startify'
 
@@ -105,6 +122,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " 状态栏
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " 快速对齐
 Plug 'junegunn/vim-easy-align'
@@ -148,10 +166,20 @@ Plug 'ctrlpvim/ctrlp.vim'
 " icon
 Plug 'ryanoasis/vim-devicons'
 
-" git
+" git命令
 Plug 'tpope/vim-fugitive'
+
+" easymotion 快速移动
+Plug 'easymotion/vim-easymotion'
+
 call plug#end()
 
+"
+" theme
+"
+set background=dark
+colorscheme PaperColor
+autocmd ColorScheme * highlight! link SignColumn LineNr
 
 
 "
@@ -179,7 +207,10 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 
-let g:godef_split = 2
+let g:godef_split=3 "左右打开新窗口的时候
+let g:godef_same_file_in_same_window=1 "函数在同一个文件中时不需要打开新窗口
+
+let g:go_auto_sameids = 1 "自动高亮相同的标识符
 
 "
 " NERDTree
@@ -316,7 +347,6 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <leader>rn <Plug>(coc-rename)
 
 
-
 "
 " vim-visual-multi
 "
@@ -332,4 +362,11 @@ let g:indentLine_char = '┆'
 " CtrlP 文件搜索
 "
 "
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<C-p>'
+
+"
+" GitGutter 显示文件修改
+"
+let g:gitgutter_set_sign_backgrounds = 1
+
+
