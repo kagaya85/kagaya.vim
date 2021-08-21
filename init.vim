@@ -26,13 +26,14 @@ let mapleader=','
 
 " 保存快捷键
 inoremap <Leader>w <Esc>:w<CR>
+vnoremap <Leader>w <Esc>:w<CR>
 noremap <Leader>w :w<CR>
 
 " 映射移动窗口快捷键
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" noremap <C-h> <C-w>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
 
 " 打开和关闭Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
@@ -48,10 +49,23 @@ nnoremap <Leader>f :NERDTreeFind<CR>
 
 " easymotion
 map ss <plug>(easymotion-s2)
-map tt <plug>(easymotion-t2)
 
 " 取消高亮搜索
 nnoremap <Leader>h :nohlsearch<CR>
+
+" airline tabline map
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>0 <Plug>AirlineSelectTab0
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
 
 "
 " color
@@ -62,6 +76,10 @@ highlight PMenuSel ctermfg=242 ctermbg=7 guifg=darkgrey guibg=black
 "
 " property
 "
+"
+
+" TextEdit might fail if hidden is not set.
+set hidden
 set autoindent
 set cursorline
 set completeopt=menu,menuone
@@ -78,10 +96,11 @@ set shortmess+=c
 set tabstop=4
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
-set updatetime=300
+set updatetime=100
 set wildmenu
 set wrap
 set encoding=UTF-8
+set ruler
 
 "
 " vim plug
@@ -99,7 +118,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'dgryski/vim-godef'
+" Plug 'dgryski/vim-godef'
 
 " Markdown
 " Plug 'plasticboy/vim-markdown'
@@ -172,6 +191,9 @@ Plug 'tpope/vim-fugitive'
 " easymotion 快速移动
 Plug 'easymotion/vim-easymotion'
 
+" splitjoin 展开折叠代码块
+Plug 'AndrewRadev/splitjoin.vim'
+
 call plug#end()
 
 "
@@ -181,6 +203,36 @@ set background=dark
 colorscheme PaperColor
 autocmd ColorScheme * highlight! link SignColumn LineNr
 
+"
+" vim airline
+"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_close_button = 1 " 'X' at the end of the tabline
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+" define the set of filetypes which are ignored for the selectTab keymappings: >
+let g:airline#extensions#tabline#keymap_ignored_filetypes =
+    \ ['vimfiler', 'nerdtree', 'tagbar']
+" change the display format of the buffer index >
+let g:airline#extensions#tabline#buffer_idx_format = {
+    \ '0': '0 ',
+    \ '1': '1 ',
+    \ '2': '2 ',
+    \ '3': '3 ',
+    \ '4': '4 ',
+    \ '5': '5 ',
+    \ '6': '6 ',
+    \ '7': '7 ',
+    \ '8': '8 ',
+    \ '9': '9 '
+    \}
+" fixes unnecessary redraw, when e.g. opening Gundo window
+let airline#extensions#tabline#ignore_bufadd_pat =
+    \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree'
 
 "
 " syntastic
@@ -195,6 +247,8 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 "
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
 let g:go_autodetect_gopath = 1
+let g:go_auto_type_info = 1
+" let g:go_auto_sameids = 1 "自动高亮相同的标识符
 let g:go_list_type = "quickfix"
 
 let g:go_version_warning = 1
@@ -206,11 +260,15 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
+let g:go_highlight_build_constraints = 1
 
-let g:godef_split=3 "左右打开新窗口的时候
-let g:godef_same_file_in_same_window=1 "函数在同一个文件中时不需要打开新窗口
+let g:go_def_mapping_enabled = 0 " 使用coc替代这个功能，
 
-let g:go_auto_sameids = 1 "自动高亮相同的标识符
+" 增加GoAlternate快捷命令
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 "
 " NERDTree
@@ -222,7 +280,7 @@ let NERDTreeAutoCenter = 0
 " 是否显示隐藏文件
 let NERDTreeShowHidden = 1
 " 设置宽度
-" let NERDTreeWinSize=31
+let NERDTreeWinSize=31
 " 忽略一下文件的显示
 let NERDTreeIgnore = [
 		\ '\.DS_Store$',
@@ -308,7 +366,8 @@ let g:coc_global_extensions = [
 			\ 'coc-json',
 			\ 'coc-vimlsp',
 			\ 'coc-yaml',
-			\ 'coc-marketplace']
+			\ 'coc-marketplace',
+			\ 'coc-go']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -323,6 +382,13 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -346,13 +412,20 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
 
 "
 " vim-visual-multi
 "
 let g:VM_maps = {}
 let g:VM_maps['Add Cursor Down'] = '<C-j>'
-let g:VM_maps['Add Cursor Up'] = '<C-x>'
+let g:VM_maps['Add Cursor Up'] = '<C-k>'
 
 "
 " indentLine
