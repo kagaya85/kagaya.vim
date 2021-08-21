@@ -283,13 +283,30 @@ let NERDTreeShowHidden = 1
 let NERDTreeWinSize=31
 " 忽略一下文件的显示
 let NERDTreeIgnore = [
+		\ '\.git$',
 		\ '\.DS_Store$',
+		\ '\.pyc$',
+		\ '\.swp',
+		\ '\.swo',
+		\ '\.vscode',
+		\ '\.idea',
+		\ '\__pycache__'
 		\ ]
 " 打开 vim 文件及显示书签列表
 let NERDTreeShowBookmarks = 2
+" Automatically delete the buffer of the file you just deleted with NerdTree
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup = 0
-
+" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 "
 " tagbar
