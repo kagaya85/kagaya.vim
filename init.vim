@@ -262,7 +262,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_build_constraints = 1
 
-let g:go_def_mapping_enabled = 0 " 使用coc替代这个功能，
+let g:go_def_mapping_enabled = 0
+let g:go_code_completion_enabled = 0 
 
 " 增加GoAlternate快捷命令
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
@@ -288,21 +289,20 @@ let NERDTreeIgnore = [
 		\ '\.pyc$',
 		\ '\.swp',
 		\ '\.swo',
-		\ '\.vscode',
-		\ '\.idea',
-		\ '\__pycache__'
+		\ '\.vscode$',
+		\ '\.idea$',
 		\ ]
 " 打开 vim 文件及显示书签列表
 let NERDTreeShowBookmarks = 2
 " Automatically delete the buffer of the file you just deleted with NerdTree
 let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
+" let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup = 0
 " Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Close the tab if NERDTree is the only window remaining in it.
