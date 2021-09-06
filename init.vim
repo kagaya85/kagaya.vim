@@ -385,7 +385,7 @@ let g:coc_global_extensions = [
 			\ 'coc-yaml',
 			\ 'coc-marketplace',
 			\ 'coc-go',
-			\ 'coc-python']
+			\ 'coc-pyright']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
