@@ -131,11 +131,23 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " builtin LSP config
 Plug 'neovim/nvim-lspconfig'
 
+" LSP server installer
+Plug 'williamboman/nvim-lsp-installer'
+
+" neovim LSP 补全
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+
 " LSP performant UI
 Plug 'glepnir/lspsaga.nvim'
 
 " treesitter highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
 " 静态检查
 Plug 'vim-syntastic/syntastic'
@@ -449,14 +461,6 @@ let g:NERDTreeGitStatusShowIgnored = 1
 " " Add `:Format` command to format current buffer.
 " command! -nargs=0 Format :call CocAction('format')
 
-"
-" nvim-lspconfig
-"
-lua << EOF
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.pyright.setup{}
-EOF
-
 
 "
 " vim-visual-multi
@@ -481,3 +485,56 @@ let g:ctrlp_map = '<C-p>'
 let g:gitgutter_set_sign_backgrounds = 1
 
 
+"
+" nvim lua config
+"
+
+set completeopt=menu,menuone,noselect
+
+lua << EOF
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.pyright.setup{}
+
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+    mapping = {
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+		['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+		['<C-e>'] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+-- Use buffer source for `/`.
+cmp.setup.cmdline('/', {
+sources = {
+		{ name = 'buffer' }
+	}
+})
+
+-- Use cmdline & path source for ':'.
+cmp.setup.cmdline(':', {
+sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+	})
+})
+EOF
