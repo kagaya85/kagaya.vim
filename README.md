@@ -1,5 +1,7 @@
 # Kagaya's vim config
 
+archived: vimscript plug-in version
+
 neovim config with [vim-plug](https://github.com/junegunn/vim-plug) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 
 # How to use 
