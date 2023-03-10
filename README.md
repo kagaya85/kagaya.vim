@@ -2,13 +2,13 @@
 
 neovim config with lua plug-in
 
-# How to use
+## How to use
 
-## Requirement
+### Requirement
 
 - neovim 0.8.0+
 
-## Installation
+### Installation
 
 ```
 git clone git@github.com:kagaya85/kagaya.vim.git ~/.config/nvim
@@ -20,6 +20,8 @@ then run:
 nvim
 ```
 
-# Acknowledgement
+enjoy it!
 
-Specilal thanks to a very cool nvim project: [nvimdots](https://github.com/ayamir/nvimdots)
+## Acknowledgement
+
+Specilal thanks to a very **COOL** nvim project: [nvimdots](https://github.com/ayamir/nvimdots)
