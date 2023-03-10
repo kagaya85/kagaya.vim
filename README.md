@@ -1,10 +1,8 @@
 # Kagaya's vim config
 
-archived: vimscript plug-in version
-
 neovim config with [vim-plug](https://github.com/junegunn/vim-plug) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 
-# How to use 
+# How to use
 
 ### Install:
 
@@ -17,12 +15,14 @@ mv kagaya.vim nvim
 ### Install vim-plug:
 
 vim:
+
 ```shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 neovim:
+
 ```shell
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -31,11 +31,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ### Install ctags
 
 ubuntu:
+
 ```shell
 sudo apt-get install ctags
 ```
 
 ### Install LSP server
+
 ```shell
 # go
 go install golang.org/x/tools/gopls@latest
@@ -47,3 +49,6 @@ npm install -g pyright
 npm install -g typescript typescript-language-server
 ```
 
+# Acknowledgement
+
+Specilal thanks to a very cool nvim project: [nvimdots](https://github.com/ayamir/nvimdots)
