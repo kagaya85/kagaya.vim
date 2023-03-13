@@ -22,6 +22,10 @@ nvim
 
 enjoy it!
 
+### Plugins
+
+see [plugins](https://github.com/ayamir/nvimdots/wiki/Plugins)
+
 ## Acknowledgement
 
 Specilal thanks to a very **COOL** nvim project: [nvimdots](https://github.com/ayamir/nvimdots)
