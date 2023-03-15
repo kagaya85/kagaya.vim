@@ -37,4 +37,10 @@ lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
 }
+lang["yanskun/gotests.nvim"] = {
+	lazy = true,
+	ft = "go",
+	build = "go install github.com/cweill/gotests/gotests@latest",
+	config = require("lang.gotests"),
+}
 return lang
