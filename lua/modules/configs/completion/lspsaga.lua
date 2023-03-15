@@ -91,8 +91,8 @@ return function()
 		outline = {
 			win_position = "right",
 			win_with = "_sagaoutline",
-			win_width = 30,
-			auto_preview = false,
+			win_width = 40,
+			auto_preview = true,
 			auto_refresh = true,
 			auto_close = true,
 			keys = {

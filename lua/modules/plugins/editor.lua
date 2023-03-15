@@ -66,6 +66,11 @@ editor["romainl/vim-cool"] = {
 	lazy = true,
 	event = { "CursorMoved", "InsertEnter" },
 }
+editor["kylechui/nvim-surround"] = {
+	lazy = true,
+	event = "VeryLazy",
+	config = require("editor.surround"),
+}
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
