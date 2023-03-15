@@ -63,7 +63,7 @@ local function load_options()
 		shiftwidth = 4,
 		shortmess = "aoOTIcF",
 		showbreak = "↳  ",
-		showcmd = false,
+		showcmd = true,
 		showmode = false,
 		showtabline = 2,
 		sidescrolloff = 5,
@@ -98,7 +98,7 @@ local function load_options()
 		winblend = 0,
 		winminwidth = 10,
 		winwidth = 30,
-		wrap = false,
+		wrap = true,
 		wrapscan = true,
 		writebackup = false,
 	}
