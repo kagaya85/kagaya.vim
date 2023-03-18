@@ -8,19 +8,19 @@ neovim config with lua plug-in
 
 - [neovim](https://github.com/neovim/neovim) 0.8.0+
 
+langs:
+
+- [go](https://github.com/golang/go)
+- [rust](https://github.com/rust-lang/rust)
+- [node](https://github.com/nodejs/node)
+
 and:
 
 - [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fd](https://github.com/sharkdp/fd)
-- [rust](https://github.com/rust-lang/rust)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [gotests](https://github.com/cweill/gotests)
-
-```shell
-# install gotests
-go install github.com/cweill/gotests/gotests@latest
-```
 
 ### 🚀 Installation
 
