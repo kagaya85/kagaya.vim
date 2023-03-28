@@ -56,7 +56,7 @@ return function()
 				cwd = "~" .. cwd:sub(#home + 1)
 			end
 		end
-		return icons.ui.RootFolderOpened .. cwd
+		return icons.ui.FolderOpen .. cwd
 	end
 
 	local mini_sections = {
