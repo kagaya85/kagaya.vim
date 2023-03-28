@@ -63,7 +63,7 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"pyright",
-	-- "gopls",
+	"gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here
