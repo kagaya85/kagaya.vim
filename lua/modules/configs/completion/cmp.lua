@@ -173,7 +173,17 @@ return function()
 			{ name = "nvim_lua" },
 			{ name = "luasnip" },
 			{ name = "path" },
-			{ name = "treesitter" },
+			{
+				name = "treesitter",
+				entry_filter = function(entry)
+					local ignore_list = {
+						"Error",
+						"Comment",
+					}
+					local kind = entry:get_completion_item().cmp.kind_text
+					return not vim.tbl_contains(ignore_list, kind)
+				end,
+			},
 			{ name = "spell" },
 			{ name = "tmux" },
 			{ name = "orgmode" },
