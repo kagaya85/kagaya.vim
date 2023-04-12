@@ -55,7 +55,7 @@ local function load_options()
 		previewheight = 12,
 		pumheight = 15,
 		redrawtime = 1500,
-		relativenumber = true,
+		relativenumber = false,
 		ruler = true,
 		scrolloff = 2,
 		sessionoptions = "curdir,help,tabpages,winsize",
