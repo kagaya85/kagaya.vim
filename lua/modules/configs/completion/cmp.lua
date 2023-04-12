@@ -49,7 +49,7 @@ return function()
 				vim_item = opts.before(entry, vim_item)
 			end
 
-			local kind_symbol = opts.symbol_map[vim_item.kind] or icons.kind.Undefinded
+			local kind_symbol = opts.symbol_map[vim_item.kind] or icons.kind.Undefined
 			local source_symbol = opts.symbol_map[entry.source.name] or icons.cmp.undefined
 
 			vim_item.menu = " " .. source_symbol .. "  |"

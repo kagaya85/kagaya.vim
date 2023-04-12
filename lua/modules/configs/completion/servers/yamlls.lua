@@ -1,32 +1,32 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/yamlls.lua
-local util = require 'lspconfig.util'
+local util = require("lspconfig.util")
 
-local bin_name = 'yaml-language-server'
-local cmd = { bin_name, '--stdio' }
+local bin_name = "yaml-language-server"
+local cmd = { bin_name, "--stdio" }
 
-if vim.fn.has 'win32' == 1 then
-  cmd = { 'cmd.exe', '/C', bin_name, '--stdio' }
+if vim.fn.has("win32") == 1 then
+	cmd = { "cmd.exe", "/C", bin_name, "--stdio" }
 end
 
 return {
-  default_config = {
-    cmd = cmd,
-    filetypes = { 'yaml', 'yaml.docker-compose' },
-    root_dir = util.find_git_ancestor,
-    single_file_support = true,
-    settings = {
-      -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
-      redhat = { telemetry = { enabled = false } },
-      yaml = {
-        schemas = {
-            ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.1-standalone-strict/all.json"] = "/*.k8s.yaml",
-        },
-        keyOrdering = false,
-      },
-    },
-  },
-  docs = {
-    description = [[
+	default_config = {
+		cmd = cmd,
+		filetypes = { "yaml", "yaml.docker-compose" },
+		root_dir = util.find_git_ancestor,
+		single_file_support = true,
+		settings = {
+			-- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+			redhat = { telemetry = { enabled = false } },
+			yaml = {
+				-- schemas = {
+				--     ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.1-standalone-strict/all.json"] = "/*.k8s.yaml",
+				-- },
+				keyOrdering = false,
+			},
+		},
+	},
+	docs = {
+		description = [[
 https://github.com/redhat-developer/yaml-language-server
 
 `yaml-language-server` can be installed via `yarn`:
@@ -87,8 +87,8 @@ require('lspconfig').yamlls.setup {
 ```
 
 ]],
-    default_config = {
-      root_dir = [[util.find_git_ancestor]],
-    },
-  },
+		default_config = {
+			root_dir = [[util.find_git_ancestor]],
+		},
+	},
 }
