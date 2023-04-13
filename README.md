@@ -6,7 +6,7 @@ neovim config with lua plug-in
 
 ### ✅ Requirement
 
-- [neovim](https://github.com/neovim/neovim) 0.8.0+
+- [neovim](https://github.com/neovim/neovim) 0.9.0
 
 langs:
 
@@ -40,6 +40,7 @@ enjoy it!
 
 - [nvim-surround](https://github.com/kylechui/nvim-surround) surround selections stylishly
 - [gotests.nvim](https://github.com/buoto/gotests-vim) generate table driven tests easily
+- [folke/noice.nvim](https://github.com/folke/noice.nvim) Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
 
 and more [plugins](https://github.com/ayamir/nvimdots/wiki/Plugins)
 

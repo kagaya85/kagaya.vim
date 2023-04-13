@@ -63,6 +63,15 @@ ui["folke/paint.nvim"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("ui.paint"),
 }
+ui["folke/noice.nvim"] = {
+	lazy = true,
+	event = "VeryLazy",
+	config = require("ui.noice"),
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	}
+}
 ui["dstein64/nvim-scrollview"] = {
 	lazy = true,
 	event = "BufReadPost",

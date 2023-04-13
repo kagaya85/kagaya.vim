@@ -26,6 +26,7 @@ return function()
 			"typescript",
 			"vue",
 			"yaml",
+			"regex",
 		},
 		highlight = {
 			enable = true,
