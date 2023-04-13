@@ -7,10 +7,6 @@ local core_map = {
 	-- Suckless
 	["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("editn: Toggle code fold"),
 	["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("editn: Save file"),
-	["n|<C-S-s>"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
-		:with_silent()
-		:with_noremap()
-		:with_desc("editn: Save file using sudo"),
 	["n|Y"] = map_cmd("y$"):with_desc("editn: Yank text to EOL"),
 	["n|D"] = map_cmd("d$"):with_desc("editn: Delete text to EOL"),
 	["n|n"] = map_cmd("nzzzv"):with_noremap():with_desc("editn: Next search result"),
@@ -34,13 +30,15 @@ local core_map = {
 	-- Insert mode
 	["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap():with_desc("editi: Delete previous block"),
 	["i|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("editi: Move cursor to left"),
+	["i|<C-f>"] = map_cmd("<Right>"):with_noremap():with_desc("editi: Move cursor to right"),
 	["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap():with_desc("editi: Move cursor to line start"),
+	["i|<C-e>"] = map_cmd("<ESC>$a"):with_noremap():with_desc("editi: Move cursor to line end"),
 	["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("editi: Save file"),
 	["i|<C-q>"] = map_cmd("<Esc>:wq<CR>"):with_desc("editi: Save file and quit"),
 	-- Command mode
-	["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("editc: Left"),
 	["c|<C-f>"] = map_cmd("<Right>"):with_noremap():with_desc("editc: Right"),
 	["c|<C-a>"] = map_cmd("<Home>"):with_noremap():with_desc("editc: Home"),
+	["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("editc: Left"),
 	["c|<C-e>"] = map_cmd("<End>"):with_noremap():with_desc("editc: End"),
 	["c|<C-d>"] = map_cmd("<Del>"):with_noremap():with_desc("editc: Delete"),
 	["c|<C-h>"] = map_cmd("<BS>"):with_noremap():with_desc("editc: Backspace"),
