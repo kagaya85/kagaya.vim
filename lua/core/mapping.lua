@@ -63,3 +63,10 @@ local core_map = {
 }
 
 bind.nvim_load_mapping(core_map)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader><leader>s",
+	"<Cmd>%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+	{ noremap = true, silent = true, nowait = true, desc = "edit: Start replacment mode of current word" }
+)
