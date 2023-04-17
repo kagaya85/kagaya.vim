@@ -129,4 +129,13 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	},
 }
 
+editor["nvim-treesitter/nvim-treesitter-context"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.treesitter-context"),
+	dependencies = {
+		{ "nvim-treesitter/nvim-treesitter" },
+	},
+}
+
 return editor
